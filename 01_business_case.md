@@ -17,4 +17,14 @@ _O que é "cure" em crédito?_
 _Por que utilizar disponibilidade de saldo para determinar a causa do atraso pode ser problemático?_  
 Por causa dos atrasos de 30 e 60 dias. O cliente pode ter esquecido, priorizado outra dívida, transferido o dinheiro, investido, reservado para outra despesa, tido algum problema operacional ou ter escolhido não pagar.  
 _Quais as regras para o Default = 1 e Default = 0 no modelo?_  
-Se DPD >= 90 no período de 6 meses - default 1. Se DPD < 90 no período de 6 meses - default 0
+Se DPD >= 90 no período de 6 meses - default 1. Se DPD < 90 no período de 6 meses - default 0  
+_O que significa performance window em credit scoring?_  
+Performance window (horizonte de previsão) é o tempo futuro em que será observado se o cliente atingiu os critérios para default = 1. Será utilizado o período de 6 meses. O foco do performance window é determinar targets, ou seja, o que queremos que o modelo aprenda.  
+_O que significa observation window?_  
+Observation window (horizonte de observação) é o tempo passado que será estudado para alimentar o modelo que criará uma estimativa de PD. Será utilizado o período de 6 meses. É com ele que são criadas as variáveis do modelo. Alguns exemplos de variáveis são: quantidade de atrasos, maior DPD, frequência de utilização do limite, saldo médio, quantidade de pagamentos, comportamento de pagamento. O foco do observtion window é a criação de features, ou seja, informações que representam o comportamento do cliente.  
+_Como se escolhe o horizonte de previsão de um modelo de crédito?_  
+Depende do objetivo do modelo e de que forma ele auxiliará. Para esse projeto de análise de crédito, será escolhido o formato de 6 meses. O tempo estendido de 12 meses pode ser avaliado posteriormente conforme a necessidade do projeto.  
+_Por que modelos de PD podem utilizar 12 meses?_  
+Porque quanto maior o performance window (horizonte de previsão), mais chances do evento de default = 1 ocorrer. Outro ponto que justifica é o estudo do ciclo em 1 ano, em que é possível prever o comportamento do cliente frente a, por exemplo, eventos sazonais como férias ou datas comemorativas.  
+_Como se dá o fluxo do projeto?_  
+O estudo do Observation Window gera Features. O estudo do Performance Window gera Target (no caso desse modelo, um Default 0 ou 1). O conjunto de Features e Target resulta em treinamento do modelo. Por fim, o modelo retorna um PD.
